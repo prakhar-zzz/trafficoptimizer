@@ -23,3 +23,17 @@ Backend: Java Spring Boot.
 Frontend: React / JavaScript (simulation UI).
 
 Data Exchange: JSON over REST APIs.
+## 📸 Screenshots  
+
+### Dashboard  
+![Dashboard](screenshots/screenshot1.png)
+
+### YOLO Vehicle Detection  
+![YOLO Detection](screenshots/screenshot2.png)
+
+### Optimized Signal Timings  
+![Signal Timings](screenshots/screenshot3.png)
+
+### Traffic Flow Simulation  
+![Simulation](screenshots/screenshot4.png)
+
