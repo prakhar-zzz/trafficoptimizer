@@ -26,7 +26,7 @@ Data Exchange: JSON over REST APIs.
 ## 📸 Screenshots  
 
 ### Dashboard  
-![Dashboard](Screenshot 2025-09-01 173945.png)
+![Dashboard](Screenshot2025-09-01173945.png)
 
 ### YOLO Vehicle Detection  
 ![YOLO Detection](screenshots/screenshot2.png)
