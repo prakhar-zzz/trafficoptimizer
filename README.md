@@ -33,7 +33,7 @@ Data Exchange: JSON over REST APIs.
 ![YOLO Detection](screenshots/ss2.png)
 
 ### Optimized Signal Timings  
-![Signal Timings](screenshots/screenshot5.png)
+![Signal Timings](screenshots/ss5.png)
 
 
 
