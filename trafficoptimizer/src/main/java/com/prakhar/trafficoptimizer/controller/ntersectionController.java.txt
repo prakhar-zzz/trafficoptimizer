@@ -1,0 +1,38 @@
+package com.prakhar.trafficoptimizer.controller;
+
+import com.prakhar.trafficoptimizer.model.Intersection;
+import com.prakhar.trafficoptimizer.service.IntersectionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/intersections")
+@CrossOrigin(origins = "*") // for frontend access later
+public class IntersectionController {
+
+    @Autowired
+    private IntersectionService service;
+
+    @PostMapping
+    public Intersection create(@RequestBody Intersection intersection) {
+        return service.saveIntersection(intersection);
+    }
+
+    @GetMapping
+    public List<Intersection> getAll() {
+        return service.getAllIntersections();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Intersection> getById(@PathVariable Long id) {
+        return service.getIntersectionById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.deleteIntersection(id);
+    }
+}

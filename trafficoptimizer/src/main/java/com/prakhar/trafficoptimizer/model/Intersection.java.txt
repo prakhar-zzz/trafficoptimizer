@@ -1,0 +1,26 @@
+package com.prakhar.trafficoptimizer.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Intersection {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;            // e.g., "Vijay Nagar Square"
+    private String city;            // e.g., "Indore"
+
+    private int northLaneCount;     // vehicles waiting on north
+    private int southLaneCount;
+    private int eastLaneCount;
+    private int westLaneCount;
+
+    private int currentGreenDirection; // 0 = North, 1 = East, etc.
+}

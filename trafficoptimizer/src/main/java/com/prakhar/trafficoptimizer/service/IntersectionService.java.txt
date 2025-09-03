@@ -1,0 +1,32 @@
+package com.prakhar.trafficoptimizer.service;
+
+import com.prakhar.trafficoptimizer.model.Intersection;
+import com.prakhar.trafficoptimizer.repository.IntersectionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class IntersectionService {
+
+    @Autowired
+    private IntersectionRepository repository;
+
+    public Intersection saveIntersection(Intersection intersection) {
+        return repository.save(intersection);
+    }
+
+    public List<Intersection> getAllIntersections() {
+        return repository.findAll();
+    }
+
+    public Optional<Intersection> getIntersectionById(Long id) {
+        return repository.findById(id);
+    }
+
+    public void deleteIntersection(Long id) {
+        repository.deleteById(id);
+    }
+}
