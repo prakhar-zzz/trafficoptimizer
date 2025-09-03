@@ -4,6 +4,7 @@ from collections import defaultdict
 import requests
 import json
 
+
 model = YOLO("yolov8n.pt")
 video_files = ["eg1.mp4", "eg2.mp4", "eg3.mp4", "eg4.mp4"]
 vehicle_classes = ['car', 'truck', 'bus', 'motorbike']
