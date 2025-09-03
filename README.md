@@ -29,11 +29,11 @@ Data Exchange: JSON over REST APIs.
 ![Dashboard](screenshorts/ss6.png)
 
 ### YOLO Vehicle Detection  
-![YOLO Detection](screenshots/ss1.png)
-![YOLO Detection](screenshots/ss2.png)
+![YOLO Detection](screenshorts/ss1.png)
+![YOLO Detection](screenshorts/ss2.png)
 
 ### Optimized Signal Timings  
-![Signal Timings](screenshots/ss5.png)
+![Signal Timings](screenshorts/ss5.png)
 
 
 
