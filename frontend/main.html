@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart AI Traffic Management System - Dashboard</title>
+  <style>
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #d7c9eb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .dashboard-container {
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      padding: 40px 60px;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #2c2c2c;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .option-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .option-box {
+      background-color: #f9f9f9;
+      padding: 30px 20px;
+      border-radius: 12px;
+      width: 250px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .option-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .option-box p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .option-box button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #7c5cf4;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .option-box button:hover {
+      background-color: #6847d5;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      .option-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .option-box {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>Choose Your Preferred Vehicle Input Method</h1>
+    <div class="option-row">
+      <div class="option-box">
+        <p>Enter Manual Vehicle Count</p>
+        <button onclick="location.href='manual.html'">Enter Manually</button>
+      </div>
+      <div class="option-box">
+        <p>Go with YOLO Detection</p>
+<button onclick="startYOLO()">Start YOLO</button>
+      </div>
+    </div>
+  </div>
+  <script>
+  async function startYOLO() {
+    console.log("🔍 Checking Spring Boot server...");
+
+    try {
+      // 1. Check if Spring Boot is running
+      const ping = await fetch("http://localhost:8080/api/traffic/last-green");
+      if (!ping.ok) throw new Error("Spring Boot server is down");
+
+      // 2. Trigger YOLO detection
+      console.log("🚀 Triggering YOLO...");
+      const response = await fetch("http://localhost:8080/api/traffic/run-yolo", {
+        method: "POST"
+      });
+
+      if (!response.ok) {
+        throw new Error("YOLO script failed to run.");
+      }
+
+      console.log("✅ YOLO script ran successfully.");
+      // 3. Redirect to simulation page
+      window.location.href = "simulation1.html";
+
+    } catch (error) {
+      console.error("❌ Error:", error);
+      alert("Could not start YOLO detection.\nMake sure Spring Boot is running.");
+    }
+  }
+</script>
+
+
+
+</body>
+</html>

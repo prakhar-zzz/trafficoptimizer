@@ -1,0 +1,88 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart AI Traffic Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #d7c9eb;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .welcome-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 90vw;
+      text-align: center;
+
+      /* Animation */
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeSlideIn 1s ease-out forwards;
+    }
+
+    .welcome-box h2 {
+      color: #333;
+      font-size: 4vw;
+      margin: 0 0 20px 0;
+    }
+
+    .continue-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #7b68ee;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      animation: fadeInButton 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .continue-btn:hover {
+      background-color: #6a5acd;
+    }
+
+    @media (min-width: 768px) {
+      .welcome-box h2 {
+        font-size: 24px;
+      }
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInButton {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-box">
+    <h2>Welcome to Smart AI Traffic Management System</h2>
+    <button class="continue-btn" onclick="window.location.href='main.html'">Continue</button>
+  </div>
+</body>
+</html>

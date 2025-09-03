@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manual Entry - Smart AI Traffic System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #d7c9eb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      width: 90%;
+      max-width: 600px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c2c2c;
+      font-size: 26px;
+      margin-bottom: 25px;
+    }
+
+    h3 {
+      color: #5b3c88;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .lane-group {
+      display: none;
+      flex-direction: column;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .lane-group label {
+      margin: 6px 0 4px;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .lane-group input {
+      padding: 10px;
+      font-size: 15px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .next-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #7c5cf4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .next-btn:hover {
+      background-color: #6847d5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Enter Vehicle Count Per Lane</h2>
+    <form id="manualForm">
+      <!-- Lane 1 -->
+      <div class="lane-group" id="lane1">
+        <h3>Lane 1</h3>
+        <label for="lane1_car">Cars</label>
+        <input type="number" id="lane1_car" min="0" required />
+        <label for="lane1_truck">Trucks</label>
+        <input type="number" id="lane1_truck" min="0" required />
+        <label for="lane1_bus">Buses</label>
+        <input type="number" id="lane1_bus" min="0" required />
+        <label for="lane1_bike">Motorbikes</label>
+        <input type="number" id="lane1_bike" min="0" required />
+        <button type="button" class="next-btn" onclick="showNextLane(1)">Next</button>
+      </div>
+
+      <!-- Lane 2 -->
+      <div class="lane-group" id="lane2">
+        <h3>Lane 2</h3>
+        <label for="lane2_car">Cars</label>
+        <input type="number" id="lane2_car" min="0" required />
+        <label for="lane2_truck">Trucks</label>
+        <input type="number" id="lane2_truck" min="0" required />
+        <label for="lane2_bus">Buses</label>
+        <input type="number" id="lane2_bus" min="0" required />
+        <label for="lane2_bike">Motorbikes</label>
+        <input type="number" id="lane2_bike" min="0" required />
+        <button type="button" class="next-btn" onclick="showNextLane(2)">Next</button>
+      </div>
+
+      <!-- Lane 3 -->
+      <div class="lane-group" id="lane3">
+        <h3>Lane 3</h3>
+        <label for="lane3_car">Cars</label>
+        <input type="number" id="lane3_car" min="0" required />
+        <label for="lane3_truck">Trucks</label>
+        <input type="number" id="lane3_truck" min="0" required />
+        <label for="lane3_bus">Buses</label>
+        <input type="number" id="lane3_bus" min="0" required />
+        <label for="lane3_bike">Motorbikes</label>
+        <input type="number" id="lane3_bike" min="0" required />
+        <button type="button" class="next-btn" onclick="showNextLane(3)">Next</button>
+      </div>
+
+      <!-- Lane 4 -->
+      <div class="lane-group" id="lane4">
+        <h3>Lane 4</h3>
+        <label for="lane4_car">Cars</label>
+        <input type="number" id="lane4_car" min="0" required />
+        <label for="lane4_truck">Trucks</label>
+        <input type="number" id="lane4_truck" min="0" required />
+        <label for="lane4_bus">Buses</label>
+        <input type="number" id="lane4_bus" min="0" required />
+        <label for="lane4_bike">Motorbikes</label>
+        <input type="number" id="lane4_bike" min="0" required />
+        <button type="submit" class="next-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("lane1").style.display = "flex";
+
+    function showNextLane(current) {
+      const inputs = document.querySelectorAll(`#lane${current} input`);
+      let allValid = true;
+
+      inputs.forEach(input => {
+        if (!input.value || input.value < 0) {
+          allValid = false;
+        }
+      });
+
+      if (!allValid) {
+        alert("Please fill all fields with valid values.");
+        return;
+      }
+
+      document.getElementById(`lane${current}`).style.display = "none";
+      const nextLane = document.getElementById(`lane${current + 1}`);
+      if (nextLane) {
+        nextLane.style.display = "flex";
+        nextLane.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    document.getElementById("manualForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const data = {};
+      for (let i = 1; i <= 4; i++) {
+        data[`Lane ${i}`] = {
+          car: parseInt(document.getElementById(`lane${i}_car`).value),
+          truck: parseInt(document.getElementById(`lane${i}_truck`).value),
+          bus: parseInt(document.getElementById(`lane${i}_bus`).value),
+          motorbike: parseInt(document.getElementById(`lane${i}_bike`).value)
+        };
+      }
+
+      try {
+        const response = await fetch("http://localhost:8080/api/traffic/update-counts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          // Redirect to simulation page after success
+          window.location.href = "simulation.html";
+        } else {
+          alert("Failed to send data. Server error.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Failed to connect to backend.");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YOLO Signal Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #d7c9eb;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    #laneDisplay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: white;
+      color: black;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .traffic-light {
+      width: 100px;
+      background-color: #333;
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .light {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #444;
+    }
+
+    .light.green {
+      background-color: #34c759;
+      box-shadow: 0 0 20px #34c759;
+    }
+
+    .timer-box {
+      width: 120px;
+      height: 120px;
+      background-color: #34c759;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: bold;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 255, 0, 0.2);
+      animation: pulse 1s infinite;
+      color: white;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #34c759; }
+      50% { box-shadow: 0 0 25px #34c759; }
+      100% { box-shadow: 0 0 10px #34c759; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="laneDisplay">Lane</div>
+
+  <div class="container">
+    <div class="traffic-light">
+      <div class="light"></div>
+      <div class="light"></div>
+      <div class="light green"></div>
+    </div>
+    <div class="timer-box" id="timer">--</div>
+  </div>
+
+  <script>
+    async function fetchGreenSignalData() {
+      try {
+        const response = await fetch("http://localhost:8080/api/traffic/last-green");
+        if (!response.ok) throw new Error("Failed to fetch signal data.");
+
+        const data = await response.json();
+        const lanes = Object.entries(data); // array of [laneName, greenTime]
+        simulateLanesSequentially(lanes, 0);
+      } catch (err) {
+        console.error(err);
+        document.getElementById("timer").textContent = "Error";
+        document.getElementById("laneDisplay").textContent = "❌ Could not load signal data";
+      }
+    }
+
+    function simulateLanesSequentially(lanes, index) {
+      if (index >= lanes.length) {
+        document.getElementById("timer").textContent = "Done";
+        document.getElementById("laneDisplay").textContent = "✅ All Lanes Complete";
+        return;
+      }
+
+      const [laneName, greenTime] = lanes[index];
+      document.getElementById("laneDisplay").textContent = laneName;
+
+      let timeLeft = greenTime;
+      const timerEl = document.getElementById("timer");
+      timerEl.textContent = timeLeft;
+
+      const countdown = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          simulateLanesSequentially(lanes, index + 1);
+        } else {
+          timerEl.textContent = timeLeft;
+        }
+      }, 1000);
+    }
+
+    // Start on load
+    fetchGreenSignalData();
+  </script>
+</body>
+</html>
