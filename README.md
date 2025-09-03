@@ -26,10 +26,10 @@ Data Exchange: JSON over REST APIs.
 ## 📸 Screenshots  
 
 ### Dashboard  
-![Dashboard](screenshorts/ss1.png)
+![Dashboard](screenshorts/ss5.png)
 
 ### YOLO Vehicle Detection  
-![YOLO Detection](screenshots/screenshot2.png)
+![YOLO Detection](screenshots/screenshot1.png)
 
 ### Optimized Signal Timings  
 ![Signal Timings](screenshots/screenshot3.png)
