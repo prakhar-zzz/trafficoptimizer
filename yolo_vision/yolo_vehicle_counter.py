@@ -56,7 +56,6 @@ for idx in range(len(video_files)):
                         tracked_centroids[cls_name].append(centroid)
                         class_counts[cls_name] += 1
 
-                    # Draw box and label
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
                     cv2.putText(frame, cls_name, (x1, y1 - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
